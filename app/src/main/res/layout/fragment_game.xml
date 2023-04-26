@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tool:text="00:00" />
+        tools:text="00:00" />
 
     <TextView
         android:id="@+id/tv_sum"
@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tool:text="1" />
+        tools:text="1" />
 
     <TextView
         android:id="@+id/tv_left_number"
@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sum"
-        tool:text="7" />
+        tools:text="7" />
 
     <TextView
         android:id="@+id/tv_question"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_option_2"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        tool:text="1" />
+        tools:text="1" />
 
     <TextView
         android:id="@+id/tv_option_2"
@@ -82,7 +82,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_option_5"
         app:layout_constraintEnd_toStartOf="@+id/tv_option_3"
         app:layout_constraintStart_toEndOf="@+id/tv_option_1"
-        tool:text="2" />
+        tools:text="2" />
 
     <TextView
         android:id="@+id/tv_option_3"
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_option_6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_option_2"
-        tool:text="3" />
+        tools:text="3" />
 
     <TextView
         android:id="@+id/tv_option_4"
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_option_5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        tool:text="4" />
+        tools:text="4" />
 
     <TextView
         android:id="@+id/tv_option_5"
@@ -116,7 +116,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_option_6"
         app:layout_constraintStart_toEndOf="@+id/tv_option_4"
-        tool:text="5" />
+        tools:text="5" />
 
     <TextView
         android:id="@+id/tv_option_6"
@@ -127,7 +127,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_option_5"
-        tool:text="6" />
+        tools:text="6" />
 
     <TextView
         android:id="@+id/textView5"
