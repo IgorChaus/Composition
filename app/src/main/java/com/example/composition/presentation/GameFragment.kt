@@ -1,9 +1,11 @@
 package com.example.composition.presentation
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameBinding
@@ -53,7 +55,11 @@ class GameFragment: Fragment() {
 
     //Если аргументы не будут переданы, то приложение упадет (requireArguments())
     fun parseArgs(){
-        level = requireArguments().getSerializable(KEY_LEVEL) as Level
+
+        requireArguments().getParcelable<Level>(KEY_LEVEL)?.let {
+            level = it
+        }
+
     }
 
     override fun onDestroyView() {
@@ -76,7 +82,7 @@ class GameFragment: Fragment() {
         fun newInstance(level: Level): GameFragment{
             return GameFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_LEVEL, level)
+                    putParcelable(KEY_LEVEL, level)
                 }
             }
         }
