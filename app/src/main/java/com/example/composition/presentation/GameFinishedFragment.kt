@@ -36,18 +36,64 @@ class GameFinishedFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,object: OnBackPressedCallback(true) {
+        setupClickListener()
+        bindViews()
+    }
+
+    private fun setupClickListener(){
+        val callback = object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 retryGame()
             }
-
-        })
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         binding.buttonRetry.setOnClickListener{
             retryGame()
         }
     }
+
+    private fun bindViews(){
+        with(binding){
+            emojiResult.setImageResource(getSmileResId())
+            tvRequiedAnswers.text = String.format(
+                getString(R.string.required_score),
+                gameResult.gameSettings.minCountOfRightAnswer
+            )
+            tvScoreAnswers.text = String.format(
+                getString(R.string.score_answers),
+                gameResult.countOfRightAnswers
+            )
+            tvRequiedPercentage.text = String.format(
+                getString(R.string.required_percentage),
+                gameResult.gameSettings.minPercentOfRightAnswer
+            )
+            tvScorePercentage.text = String.format(
+                getString(R.string.score_percentage),
+                getPercentOfRightAnswers()
+            )
+        }
+    }
+
+    private fun getPercentOfRightAnswers() = with(gameResult){
+        if (countOfQuestions == 0) {
+            0
+        } else {
+            ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
+        }
+
+    }
+
+
+
+    private fun getSmileResId(): Int{
+        return if (gameResult.winner) {
+            R.drawable.ic_smile
+        } else {
+            R.drawable.ic_sad
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
