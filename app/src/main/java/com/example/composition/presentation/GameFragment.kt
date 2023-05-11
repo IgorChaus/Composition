@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameBinding
 import com.example.composition.domain.entity.GameResult
@@ -22,10 +23,10 @@ import com.example.composition.domain.entity.Level
 
 class GameFragment: Fragment() {
 
-    private lateinit var level: Level
+    private val args by navArgs<GameFragmentArgs>()
 
     private val viewModelFactory by lazy{
-        GameViewModelFactory(level, requireActivity().application)
+        GameViewModelFactory(args.level, requireActivity().application)
     }
 
     private val viewModel: GameViewModel by lazy {
@@ -46,11 +47,6 @@ class GameFragment: Fragment() {
            add(binding.tvOption6)
        }
    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseArgs()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -124,14 +120,7 @@ class GameFragment: Fragment() {
         return ContextCompat.getColor(requireContext(),colorResId)
     }
 
-    //Если аргументы не будут переданы, то приложение упадет (requireArguments())
-    fun parseArgs(){
 
-        requireArguments().getParcelable<Level>(KEY_LEVEL)?.let {
-            level = it
-        }
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -139,23 +128,8 @@ class GameFragment: Fragment() {
     }
 
     fun launchGameFinishedFragment(gameResult: GameResult){
-        val args = Bundle().apply {
-            putParcelable(GameFinishedFragment.KEY_GAME_RESULT, gameResult)
-        }
-        findNavController().navigate(R.id.action_gameFragment2_to_gameFinishedFragment2, args)
+        findNavController().navigate(GameFragmentDirections
+            .actionGameFragment2ToGameFinishedFragment2(gameResult))
     }
 
-    companion object{
-
-        const val NAME = "GameFragment"
-        const val KEY_LEVEL = "level"
-
-        fun newInstance(level: Level): GameFragment{
-            return GameFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_LEVEL, level)
-                }
-            }
-        }
-    }
 }
