@@ -1,9 +1,7 @@
 package com.example.composition.presentation
 
 import android.app.Application
-import android.content.Context
 import android.os.CountDownTimer
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -141,7 +139,6 @@ class GameViewModel(
     private fun formatTime(millisUntilFinished: Long): String{
         val seconds = millisUntilFinished / MILLIS_IN_SECONDS
         val minutes = seconds / SECONDS_IN_MINUTES
-        val leftSeconds = seconds - (seconds * SECONDS_IN_MINUTES)
         return String.format("%02d:%02d", minutes, seconds)
     }
 
